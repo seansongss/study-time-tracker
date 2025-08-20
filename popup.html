@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Study Time Tracker</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Study Time</h1>
+      <div class="actions">
+        <button id="todayBtn" class="active">Today</button>
+        <button id="weekBtn">Last 7 Days</button>
+      </div>
+    </header>
+
+    <main>
+      <ul id="summary"></ul>
+      <p id="empty" class="muted">No time recorded yet.</p>
+    </main>
+
+    <footer>
+      <a href="options.html" target="_blank">Settings</a>
+      <button id="export">Export CSV</button>
+      <button id="reset" class="danger">Reset Log</button>
+    </footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

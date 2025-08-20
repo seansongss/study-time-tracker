@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Study Time Tracker — Settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Study Time Tracker — Settings</h1>
+      <p class="muted">
+        Tip: For tracking <strong>file://</strong> pages, enable
+        “Allow access to file URLs” in <code>chrome://extensions</code>.
+      </p>
+    </header>
+
+    <section class="panel">
+      <h2>Global Settings</h2>
+      <label>
+        Idle threshold (seconds):
+        <input id="idle" type="number" min="15" max="600" step="5" />
+      </label>
+      <span id="autosaveStatus" class="muted small" style="margin-left:8px;"></span>
+    </section>
+
+    <section class="panel">
+      <h2>Courses</h2>
+      <div id="courses"></div>
+      <button id="addCourse">+ Add Course</button>
+    </section>
+
+    <template id="courseTpl">
+      <div class="course">
+        <div class="row">
+          <label>Course ID/Code <input data-field="id" placeholder="e.g., CS240"></label>
+          <label>Name <input data-field="name" placeholder="Course Name"></label>
+          <label>Color <input data-field="color" type="color" value="#6366f1"></label>
+          <button data-action="remove" class="danger">Remove</button>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h3>Folders (file://)</h3>
+            <p class="muted small">
+              Use <em>Use Active Tab Folder</em> while a <code>file://</code> page is open.
+              If “Files only”, add exact files below.
+            </p>
+            <div class="folders"></div>
+            <div class="row" style="gap:6px;margin:6px 0;">
+              <button data-action="addFolder">+ Add Folder</button>
+              <button data-action="useActiveFolder">Use Active Tab Folder</button>
+            </div>
+          </div>
+
+          <div class="col">
+            <h3>Websites (http/https)</h3>
+            <p class="muted small">Add URL prefixes (e.g., <code>https://chat.openai.com/</code>).</p>
+            <div class="sites"></div>
+            <div class="row" style="gap:6px;margin:6px 0;">
+              <button data-action="addSite">+ Add Site</button>
+              <button data-action="addActiveSite">+ Add Current Tab Site</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="folderTpl">
+      <div class="folder">
+        <label>Path <input data-field="path" placeholder="/Users/you/School/CS240"></label>
+        <label><input type="checkbox" data-field="includeSubfolders" checked> Include subfolders</label>
+        <label><input type="checkbox" data-field="filesOnly"> Files only</label>
+        <div class="files"></div>
+        <div style="display:flex; gap:6px; margin-top:6px;">
+          <button data-action="addFile">+ Add File</button>
+          <button data-action="addActiveFile">+ Add Current Tab File</button>
+          <button data-action="removeFolder" class="danger">Remove Folder</button>
+        </div>
+      </div>
+    </template>
+
+    <template id="fileTpl">
+      <div class="file">
+        <input data-field="file" placeholder="/Users/you/School/CS240/notes/week1.pdf" />
+        <button data-action="removeFile" class="danger">Remove</button>
+      </div>
+    </template>
+
+    <template id="siteTpl">
+      <div class="site">
+        <input data-field="pattern" placeholder="https://chat.openai.com/" />
+        <button data-action="useActiveSite">Use Active Tab</button>
+        <button data-action="removeSite" class="danger">Remove</button>
+      </div>
+    </template>
+
+    <footer>
+      <!-- Manual save is optional now; autosave runs on every change -->
+      <button id="save">Save</button>
+    </footer>
+
+    <script src="options.js"></script>
+  </body>
+</html>

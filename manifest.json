@@ -1,5 +1,5 @@
 {
-  "manifest_version": 1,
+  "manifest_version": 3,
   "name": "Study Time Tracker",
   "version": "1.0.0",
   "description": "Track study time across local files and websites by course; daily & weekly summaries.",
